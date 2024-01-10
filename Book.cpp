@@ -1,0 +1,45 @@
+#include "Book.h"
+#include <iostream>
+#include <ctime>
+#include <iomanip>
+
+Book::Book(int id, const std::string& name, const std::string& firstName, const std::string& lastName, const std::string& type)
+  : bookID(id), bookName(name), authorFirstName(firstName), authorLastName(lastName), bookType(type), borrowerID(-1) {
+  dueDate = Date(); // Initialize the dueDate with a default value
+}
+
+void Book::borrowBook(int memberID) {
+  borrowerID = memberID;
+
+  // Set due date to 3 days from today
+  std::time_t now = std::time(0);
+  std::tm* today = std::localtime(&now);
+  dueDate = Date(today->tm_mday + 3, today->tm_mon + 1, today->tm_year + 1900);
+}
+
+void Book::returnBook() {
+  borrowerID = -1;  // Reset borrower ID
+}
+
+bool Book::isBorrowed() const {
+  return borrowerID != -1;
+}
+
+void Book::displayBook() const {
+  std::cout << "Book ID: " << bookID << std::endl;
+  std::cout << "Book Name: " << bookName << std::endl;
+  std::cout << "Page Count: " << pageCount << std::endl;
+  std::cout << "Author: " << authorFirstName << " " << authorLastName << std::endl;
+  std::cout << "Type: " << bookType << std::endl;
+  std::cout << "Due Date: ";
+  if (isBorrowed()) {
+    dueDate.printDate();
+  } else {
+    std::cout << "Not borrowed";
+  }
+  std::cout << std::endl << std::endl;
+}
+
+int Book::getBorrowerID() const {
+  return borrowerID;
+}
