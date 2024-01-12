@@ -4,7 +4,7 @@
 #include <string>
 #include "Date.h"
 
-class Book {
+class Book { // Declaring the Book class
 public:
   int bookID;
   std::string bookName;
@@ -15,6 +15,7 @@ public:
   Date dueDate;
   int borrowerID;
 
+  // Constructor
   Book(int id, const std::string& name, const std::string& firstName, const std::string& lastName, const std::string& type);
   void borrowBook(int memberID);
   void returnBook();

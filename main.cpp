@@ -2,10 +2,11 @@
 #include <iostream>
 
 int main(int argc, char* argv[]) {
-  if (argc != 2) {
+  if (argc != 2) { // Check if the correct number of command-line arguments is provided
     std::cout << "Usage: " << argv[0] << " <filename>" << std::endl;
     return 1;
   }
+  // Get the filename from the command-line arguments
   std::string filename = argv[1];
 
   // Get Librarian details from the user
@@ -32,11 +33,12 @@ int main(int argc, char* argv[]) {
   // Create a Librarian object with user-provided details
   Librarian librarian(staffID, name, address, email, salary);
 
-
+  // Read books from the CSV file and populate the library
   readBooksFromCSV(librarian.library, filename);
 
   int choice;
-  do {
+  do { // Do while loop to keep the program running until the choice is 0 to end the program
+    // Show the menu options to the librarian
     std::cout << "Enter the corresponding number to carry out the following options: " << std::endl;
     std::cout << "1. Add a member" << std::endl;
     std::cout << "2. Issue a book" << std::endl;
@@ -47,6 +49,8 @@ int main(int argc, char* argv[]) {
     std::cout << "Enter your choice: ";
     std::cin >> choice;
 
+    // Switch statement to handle user choices
+    // Corresponding cases to carry out the corresponding functions
     switch (choice) {
     case 1: {
       std::string memberName;
@@ -97,9 +101,11 @@ int main(int argc, char* argv[]) {
       break;
     }
     case 0:
+      // Exit the program if input is 0
       std::cout << "Exiting program. Goodbye!" << std::endl;
       break;
     default:
+      // Default statement if a choice entered is not a valid choice
       std::cout << "Invalid choice. Please enter a valid option." << std::endl;
     }
   } while (choice != 0);

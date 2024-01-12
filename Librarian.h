@@ -5,6 +5,7 @@
 #include "Book.h"
 #include "Member.h"
 
+// Declaring the Librarian class
 class Librarian {
 private:
   int staffID;
@@ -14,11 +15,12 @@ private:
   int librarianSalary;
 
 public:
-  std::vector<Book> library;
-  std::vector<Member> members;
+  std::vector<Book> library; // Vector to store the library's books
+  std::vector<Member> members; // Vector to store the library's members
 
+  // Constructor to initialize Librarian object with given details
   Librarian(int staffID, const std::string& name, const std::string& address, const std::string& email, int salary);
-
+  //Declaring all the functions
   int getStaffID() const;
   void setStaffID(int staffID);
 
@@ -31,7 +33,7 @@ public:
   void displayBorrowedBooks(int memberID) const;
   void calculateFine(int memberID) const;
 };
-
+// Function to read books from a CSV file and fill the library vector
 void readBooksFromCSV(std::vector<Book>& library, const std::string& filename);
 
 #endif

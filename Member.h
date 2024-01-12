@@ -5,6 +5,7 @@
 #include <vector>
 #include "Book.h"
 
+// Declaring the Member class
 class Member {
 public:
   int memberID;
@@ -13,6 +14,7 @@ public:
   std::string email;
   std::vector<Book*> booksBorrowed;
 
+  // Constructor
   Member(int id, const std::string& n, const std::string& addr, const std::string& mail);
   void borrowBook(Book* book);
   void returnBook(Book* book);
